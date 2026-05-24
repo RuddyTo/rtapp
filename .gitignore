@@ -1,0 +1,7 @@
+node_modules/
+cypress/
+cypress.config.js
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+.cursor/

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QA Playground — Automation Sandbox</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <p>We use cookies on our website to improve your experience.</p>
+    <button type="button" id="cookie-accept">Accept</button>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">🧪</span>
+      <h1>QA Playground</h1>
+    </div>
+    <p class="tagline">A single-page sandbox for practicing test automation</p>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Sections">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#login" class="nav-link" data-section="login">Login</a>
+      <a href="#forms" class="nav-link" data-section="forms">Forms Lab</a>
+      <a href="#dynamic" class="nav-link" data-section="dynamic">Dynamic Content</a>
+      <a href="#modals" class="nav-link" data-section="modals">Modals &amp; Alerts</a>
+      <a href="#table" class="nav-link" data-section="table">Sortable Table</a>
+      <a href="#upload" class="nav-link" data-section="upload">File Upload</a>
+      <a href="#wizard" class="nav-link" data-section="wizard">Multi-step Wizard</a>
+      <a href="#challenges" class="nav-link" data-section="challenges">Locator Challenges</a>
+    </nav>
+
+    <main class="content">
+      <section id="home" class="panel active" data-panel="home">
+        <h2>Welcome to the sandbox</h2>
+        <p>Use the sidebar to jump between practice areas. Each section targets common automation scenarios: forms, waits, modals, tables, and tricky locators.</p>
+        <ul class="feature-list">
+          <li><strong>Login</strong> — validation, success and error states</li>
+          <li><strong>Forms Lab</strong> — dropdowns, checkboxes, radios, date input</li>
+          <li><strong>Dynamic Content</strong> — elements that appear after a delay</li>
+          <li><strong>Modals</strong> — custom dialogs and native alerts</li>
+          <li><strong>Table</strong> — click column headers to sort rows</li>
+          <li><strong>File Upload</strong> — choose a file and see the selected name</li>
+          <li><strong>Wizard</strong> — three-step flow with review screen</li>
+          <li><strong>Challenges</strong> — dynamic IDs and nested DOM (hard mode)</li>
+        </ul>
+      </section>
+
+      <section id="login" class="panel" data-panel="login">
+        <h2>Login</h2>
+        <p>Valid credentials: <code>test@example.com</code> / <code>Password123</code></p>
+        <form name="login" id="login-form" novalidate>
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" name="email" placeholder="Email" required>
+
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" placeholder="Password" required minlength="8">
+
+          <button type="submit">Sign in</button>
+        </form>
+        <div id="login-message" class="message" role="status" aria-live="polite" hidden></div>
+      </section>
+
+      <section id="forms" class="panel" data-panel="forms">
+        <h2>Forms Lab</h2>
+        <form name="profile" id="profile-form">
+          <label for="profile-name">Full name</label>
+          <input type="text" id="profile-name" name="fullName" placeholder="Jane Doe" required>
+
+          <label for="profile-role">Role</label>
+          <select id="profile-role" name="role" required>
+            <option value="">Select a role…</option>
+            <option value="qa">QA Engineer</option>
+            <option value="dev">Developer</option>
+            <option value="pm">Product Manager</option>
+          </select>
+
+          <fieldset>
+            <legend>Experience level</legend>
+            <label><input type="radio" name="level" value="junior" required> Junior</label>
+            <label><input type="radio" name="level" value="mid"> Mid</label>
+            <label><input type="radio" name="level" value="senior"> Senior</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Skills</legend>
+            <label><input type="checkbox" name="skills" value="cypress"> Cypress</label>
+            <label><input type="checkbox" name="skills" value="playwright"> Playwright</label>
+            <label><input type="checkbox" name="skills" value="selenium"> Selenium</label>
+          </fieldset>
+
+          <label for="profile-start">Start date</label>
+          <input type="date" id="profile-start" name="startDate" required>
+
+          <label for="profile-notes">Notes</label>
+          <textarea id="profile-notes" name="notes" placeholder="Optional notes" rows="3"></textarea>
+
+          <button type="submit">Save profile</button>
+        </form>
+        <p id="profile-summary" class="summary" hidden></p>
+      </section>
+
+      <section id="dynamic" class="panel" data-panel="dynamic">
+        <h2>Dynamic Content</h2>
+        <p>Click the button and wait for the hidden content to appear (2 second delay).</p>
+        <button type="button" id="load-dynamic">Load content</button>
+        <div id="dynamic-spinner" class="spinner" hidden aria-label="Loading">Loading…</div>
+        <div id="dynamic-result" class="dynamic-result" hidden>
+          <h3>Content loaded!</h3>
+          <p id="dynamic-text">The element with id <code>dynamic-text</code> is now visible.</p>
+        </div>
+      </section>
+
+      <section id="modals" class="panel" data-panel="modals">
+        <h2>Modals &amp; Alerts</h2>
+        <div class="button-row">
+          <button type="button" id="open-modal">Open modal</button>
+          <button type="button" id="trigger-alert">Trigger alert</button>
+          <button type="button" id="trigger-confirm">Trigger confirm</button>
+        </div>
+        <p id="confirm-result" class="message" role="status" hidden></p>
+
+        <div id="custom-modal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <div class="modal">
+            <h3 id="modal-title">Confirm action</h3>
+            <p>Are you sure you want to proceed?</p>
+            <div class="button-row">
+              <button type="button" id="modal-cancel">Cancel</button>
+              <button type="button" id="modal-confirm">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <p id="modal-result" class="message" role="status" hidden></p>
+      </section>
+
+      <section id="table" class="panel" data-panel="table">
+        <h2>Sortable Table</h2>
+        <table id="users-table">
+          <thead>
+            <tr>
+              <th><button type="button" class="sort-btn" data-sort="name">Name</button></th>
+              <th><button type="button" class="sort-btn" data-sort="role">Role</button></th>
+              <th><button type="button" class="sort-btn" data-sort="score">Score</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-name="Alice" data-role="QA" data-score="92"><td>Alice</td><td>QA</td><td>92</td></tr>
+            <tr data-name="Bob" data-role="Dev" data-score="88"><td>Bob</td><td>Dev</td><td>88</td></tr>
+            <tr data-name="Carol" data-role="PM" data-score="95"><td>Carol</td><td>PM</td><td>95</td></tr>
+            <tr data-name="Dan" data-role="QA" data-score="81"><td>Dan</td><td>QA</td><td>81</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="upload" class="panel" data-panel="upload">
+        <h2>File Upload</h2>
+        <p>Select any file — the app shows the chosen filename (no upload to a server).</p>
+        <form name="upload" id="upload-form">
+          <label for="file-input">Choose file</label>
+          <input type="file" id="file-input" name="file" accept=".txt,.pdf,.png,.jpg,.jpeg">
+          <button type="submit">Upload</button>
+        </form>
+        <p id="upload-result" class="message" role="status" hidden></p>
+      </section>
+
+      <section id="wizard" class="panel" data-panel="wizard">
+        <h2>Multi-step Wizard</h2>
+        <div class="wizard-steps" aria-label="Progress">
+          <span class="wizard-step active" data-step="1">1. Account</span>
+          <span class="wizard-step" data-step="2">2. Details</span>
+          <span class="wizard-step" data-step="3">3. Review</span>
+        </div>
+
+        <form name="wizard" id="wizard-form">
+          <div class="wizard-panel active" data-wizard-step="1">
+            <label for="wizard-email">Email</label>
+            <input type="email" id="wizard-email" name="wizardEmail" placeholder="you@example.com" required>
+          </div>
+          <div class="wizard-panel" data-wizard-step="2">
+            <label for="wizard-company">Company</label>
+            <input type="text" id="wizard-company" name="wizardCompany" placeholder="Acme Inc." required>
+          </div>
+          <div class="wizard-panel" data-wizard-step="3">
+            <h3>Review</h3>
+            <dl id="wizard-review"></dl>
+          </div>
+
+          <div class="button-row wizard-nav">
+            <button type="button" id="wizard-back" disabled>Back</button>
+            <button type="button" id="wizard-next">Next</button>
+            <button type="submit" id="wizard-submit" hidden>Finish</button>
+          </div>
+        </form>
+        <div id="wizard-success" class="message success" hidden role="status">Registration complete!</div>
+      </section>
+
+      <section id="challenges" class="panel" data-panel="challenges">
+        <h2>Locator Challenges</h2>
+        <p>These elements use dynamic IDs — practice finding stable selectors.</p>
+        <button type="button" id="regenerate-ids">Regenerate IDs</button>
+        <div id="challenge-container">
+          <button type="button" class="challenge-btn">Click me</button>
+          <span class="challenge-label">Status: waiting</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
