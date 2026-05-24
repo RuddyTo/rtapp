@@ -1,4 +1,4 @@
-# QA Playground
+# QA Playground (rtapp)
 
 A single-page web app for practicing test automation — forms, modals, dynamic content, wizards, and tricky locators.
 
