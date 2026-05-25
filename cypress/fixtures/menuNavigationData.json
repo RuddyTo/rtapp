@@ -1,0 +1,58 @@
+{
+  "sections": [
+    {
+      "name": "home",
+      "navLabel": "Home",
+      "heading": "Welcome to the sandbox",
+      "markerKey": "homeMarker"
+    },
+    {
+      "name": "login",
+      "navLabel": "Login",
+      "heading": "Login",
+      "markerKey": "loginMarker"
+    },
+    {
+      "name": "forms",
+      "navLabel": "Forms Lab",
+      "heading": "Forms Lab",
+      "markerKey": "formsMarker"
+    },
+    {
+      "name": "dynamic",
+      "navLabel": "Dynamic Content",
+      "heading": "Dynamic Content",
+      "markerKey": "dynamicMarker"
+    },
+    {
+      "name": "modals",
+      "navLabel": "Modals & Alerts",
+      "heading": "Modals & Alerts",
+      "markerKey": "modalsMarker"
+    },
+    {
+      "name": "table",
+      "navLabel": "Sortable Table",
+      "heading": "Sortable Table",
+      "markerKey": "tableMarker"
+    },
+    {
+      "name": "upload",
+      "navLabel": "File Upload",
+      "heading": "File Upload",
+      "markerKey": "uploadMarker"
+    },
+    {
+      "name": "wizard",
+      "navLabel": "Multi-step Wizard",
+      "heading": "Multi-step Wizard",
+      "markerKey": "wizardMarker"
+    },
+    {
+      "name": "challenges",
+      "navLabel": "Locator Challenges",
+      "heading": "Locator Challenges",
+      "markerKey": "challengesMarker"
+    }
+  ]
+}
