@@ -1,24 +1,17 @@
 import * as locators from '../locators/menuNavigation.locators.js'
 
-const MARKERS = {
-  homeMarker: locators.homeMarker,
-  loginMarker: locators.loginMarker,
-  formsMarker: locators.formsMarker,
-  dynamicMarker: locators.dynamicMarker,
-  modalsMarker: locators.modalsMarker,
-  tableMarker: locators.tableMarker,
-  uploadMarker: locators.uploadMarker,
-  wizardMarker: locators.wizardMarker,
-  challengesMarker: locators.challengesMarker,
-}
-
+/**
+ * Menu navigation page object.
+ *
+ * Action methods (`visit`, `click*`, `dismissCookieBanner`): one user interaction per method.
+ * Assertion methods (`expect*`): may include multiple checks in one method.
+ */
 class MenuNavigationPage {
   elements = {
-    sidebar: () => cy.get(locators.sidebar),
     navLink: (section) => cy.get(locators.navLink(section)),
     activePanel: (section) => cy.get(locators.activePanel(section)),
-    pageMarker: (markerKey) => cy.get(MARKERS[markerKey]),
     homeHeading: () => cy.get(locators.homeHeading),
+    homeMarker: () => cy.get(locators.homeMarker),
     homeMenu: () => cy.get(locators.homeMenu),
     loginMenu: () => cy.get(locators.loginMenu),
     formsMenu: () => cy.get(locators.formsMenu),
@@ -74,10 +67,6 @@ class MenuNavigationPage {
     cy.dismissCookieBannerIfPresent()
   }
 
-  goToSection(section) {
-    this.elements.navLink(section).click()
-  }
-
   expectSectionActive(section) {
     this.elements.activePanel(section).should('be.visible')
     this.elements.navLink(section).should('have.class', 'active')
@@ -86,13 +75,7 @@ class MenuNavigationPage {
   expectHomePageOpened() {
     this.expectSectionActive('home')
     this.elements.homeHeading().should('be.visible').and('have.text', 'Welcome to the sandbox')
-    this.elements.pageMarker('homeMarker').should('be.visible')
-  }
-
-  expectPageOpened({ name, heading, markerKey }) {
-    this.expectSectionActive(name)
-    cy.contains('h2', heading).should('be.visible')
-    this.elements.pageMarker(markerKey).should('be.visible')
+    this.elements.homeMarker().should('be.visible')
   }
 }
 

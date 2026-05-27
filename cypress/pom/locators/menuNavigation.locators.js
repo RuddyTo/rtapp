@@ -1,11 +1,12 @@
 /**
  * Menu navigation locators — https://ruddyto.github.io/rtapp/#home
  *
- * Locator strategy: data-section nav links + data-panel sections + page-specific markers
+ * Locator strategy: data-section nav links + data-panel sections + home panel markers
  */
 
-export const sidebar = 'nav.sidebar[aria-label="Sections"]'
-export const navLink = (section) => `${sidebar} a.nav-link[data-section="${section}"]`
+export const navLink = (section) =>
+  `nav.sidebar[aria-label="Sections"] a.nav-link[data-section="${section}"]`
+
 export const activePanel = (section) => `section[data-panel="${section}"].panel.active`
 
 export const homeMenu = '[data-section="home"]'
@@ -20,11 +21,3 @@ export const challengesMenu = '[data-section="challenges"]'
 
 export const homeMarker = 'ul.feature-list'
 export const homeHeading = 'section[data-panel="home"] h2'
-export const loginMarker = 'form[name="login"]'
-export const formsMarker = 'form[name="profile"]'
-export const dynamicMarker = '#load-dynamic'
-export const modalsMarker = '#open-modal'
-export const tableMarker = '#users-table'
-export const uploadMarker = 'form[name="upload"]'
-export const wizardMarker = 'form[name="wizard"]'
-export const challengesMarker = '#regenerate-ids'
